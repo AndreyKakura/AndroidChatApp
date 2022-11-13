@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "453822172527",
+    "firebase_url": "https://ivanchat-1dfba-default-rtdb.firebaseio.com",
+    "project_id": "ivanchat-1dfba",
+    "storage_bucket": "ivanchat-1dfba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453822172527:android:9b242db0f01f18a0986c9a",
+        "android_client_info": {
+          "package_name": "com.kakura.ivanchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453822172527-uacgjagmev8b5b1s3u12ketgge18ckun.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLvmSjaED0swLJ6pVKHyLd9uSHAKG3Viw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453822172527-uacgjagmev8b5b1s3u12ketgge18ckun.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
