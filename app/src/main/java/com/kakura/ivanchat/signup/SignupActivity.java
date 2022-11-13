@@ -100,7 +100,6 @@ public class SignupActivity extends AppCompatActivity {
                 startActivityForResult(intent, 101);
             } else {
                 Toast.makeText(this, R.string.permission_required, Toast.LENGTH_SHORT);
-                //
             }
         }
     }
