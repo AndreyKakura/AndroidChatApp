@@ -33,4 +33,24 @@
     <string name="chat">Chat</string>
     <string name="requests">Requests</string>
     <string name="find">Find</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="empty_chat_list">Chat list will appear here</string>
+    <string name="empty_friends_list">Friends list will appear here</string>
+    <string name="empty_requests_list">Friend requests will appear here</string>
+    <string name="press_back_to_exit">Press back again to exit</string>
+    <string name="send_friend_request">Send Friend Request</string>
+    <string name="cancel_request">Cancel Request</string>
+    <string name="failed_to_fetch_friends">Failed to fetch friends : %1$s</string>
+    <string name="request_sent_successfully">Request sent successfully</string>
+    <string name="failed_to_send_request">Failed to send friend request : %1$s</string>
+    <string name="request_cancelled_successfully">Request Cancelled Successfully</string>
+    <string name="failed_to_cancel_request">Failed to cancel request : %1$s</string>
+    <string name="accept">Accept</string>
+    <string name="deny">Deny</string>
+    <string name="failed_to_fetch_friend_requests">Failed to fetch friend requests %1$s</string>
+    <string name="failed_to_deny_request">Failed to deny request : %1$s</string>
+    <string name="denied">Denied</string>
+    <string name="request_denied_successfully">Request Denied Successfully</string>
+    <string name="failed_to_accept_request">Failed to accept request : %1$s</string>
 </resources>

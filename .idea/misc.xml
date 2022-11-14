@@ -19,6 +19,14 @@
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/activity_test.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/custom_progressbar.xml" value="0.253125" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/find_friends_layout.xml" value="0.253125" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/fragment_chat.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/fragment_find_friends.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/fragment_requests.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/friend_request_layout.xml" value="0.25226449275362317" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/tab_chat.xml" value="0.4" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/tab_findfriends.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/tab_requests.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/menu/menu_main.xml" value="0.253125" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/menu/menu_picture.xml" value="0.253125" />
       </map>
