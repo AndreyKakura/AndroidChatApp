@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
+import com.kakura.ivanchat.chats.ChatFragment;
 import com.kakura.ivanchat.findfriends.FindFriendsFragment;
 import com.kakura.ivanchat.profile.ProfileActivity;
 import com.kakura.ivanchat.requests.RequestsFragment;
