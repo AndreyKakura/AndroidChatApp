@@ -13,14 +13,20 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.kakura.ivanchat.MainActivity;
+import com.kakura.ivanchat.MessageActivity;
 import com.kakura.ivanchat.R;
+import com.kakura.ivanchat.common.Util;
+import com.kakura.ivanchat.password.ResetPasswordActivity;
 import com.kakura.ivanchat.signup.SignupActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
     private TextInputEditText etEmail, etPassword;
-    private String email, password;
+    private String email;
+    private String password;
+    private View progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
+        progressBar = findViewById(R.id.progressBar);
     }
 
     public void tvSignupClick(View v) {
@@ -43,18 +50,40 @@ public class LoginActivity extends AppCompatActivity {
         } else if (password.equals("")) {
             etPassword.setError(getString(R.string.enter_password));
         } else {
-            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-            firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Login Failed: " + task.getException(), Toast.LENGTH_SHORT).show();
+            if(Util.connectionAvailable(this)) {
+                progressBar.setVisibility(View.VISIBLE);
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressBar.setVisibility(View.GONE);
+                        if (task.isSuccessful()) {
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Login Failed: " + task.getException(), Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                startActivity(new Intent(LoginActivity.this, MessageActivity.class));
+            }
         }
 
+    }
+
+    public void tvResetPasswordClick(View view) {
+        startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+        if(firebaseUser != null) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
     }
 }

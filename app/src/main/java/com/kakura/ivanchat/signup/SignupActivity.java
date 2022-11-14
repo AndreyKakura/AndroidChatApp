@@ -56,6 +56,8 @@ public class SignupActivity extends AppCompatActivity {
     private Uri localFileUri;
     private Uri serverFileUri;
 
+    private View progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +70,8 @@ public class SignupActivity extends AppCompatActivity {
         ivProfile = findViewById(R.id.ivProfile);
 
         fileStorage = FirebaseStorage.getInstance().getReference();
+
+        progressBar = findViewById(R.id.progressBar);
     }
 
     public void pickImage(View v) {
@@ -109,9 +113,11 @@ public class SignupActivity extends AppCompatActivity {
 
         final StorageReference fileRef = fileStorage.child("images/" + strFileName);
 
+        progressBar.setVisibility(View.VISIBLE);
         fileRef.putFile(localFileUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
@@ -158,6 +164,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void updateName() {
+        progressBar.setVisibility(View.VISIBLE);
         UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
                 .setDisplayName(etName.getText().toString().trim())
                 .build();
@@ -165,6 +172,7 @@ public class SignupActivity extends AppCompatActivity {
         firebaseUser.updateProfile(request).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     String userId = firebaseUser.getUid();
                     databaseReference = FirebaseDatabase.getInstance().getReference().child(NodeNames.USERS);
@@ -175,9 +183,11 @@ public class SignupActivity extends AppCompatActivity {
                     map.put(NodeNames.ONLINE, "true");
                     map.put(NodeNames.PHOTO, "");
 
+                    progressBar.setVisibility(View.VISIBLE);
                     databaseReference.child(userId).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(SignupActivity.this, R.string.user_created_successfully, Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                         }
@@ -209,10 +219,12 @@ public class SignupActivity extends AppCompatActivity {
         } else if (!password.equals(confirmPassword)) {
             etConfirmPassword.setError(getString(R.string.password_mismatch));
         } else {
+            progressBar.setVisibility(View.VISIBLE);
             FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+                    progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
                         firebaseUser = firebaseAuth.getCurrentUser();
                         if(localFileUri != null) {

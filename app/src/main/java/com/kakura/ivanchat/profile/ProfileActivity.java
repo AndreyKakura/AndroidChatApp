@@ -33,6 +33,7 @@ import com.google.firebase.storage.UploadTask;
 import com.kakura.ivanchat.R;
 import com.kakura.ivanchat.common.NodeNames;
 import com.kakura.ivanchat.login.LoginActivity;
+import com.kakura.ivanchat.password.ChangePasswordActivity;
 import com.kakura.ivanchat.signup.SignupActivity;
 
 import java.util.HashMap;
@@ -55,6 +56,8 @@ public class ProfileActivity extends AppCompatActivity {
     private Uri serverFileUri;
     private FirebaseAuth firebaseAuth;
 
+    private View progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +72,8 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         firebaseUser = firebaseAuth.getCurrentUser();
+
+        progressBar = findViewById(R.id.progressBar);
 
         if (firebaseUser != null) {
             etName.setText(firebaseUser.getDisplayName());
@@ -105,7 +110,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void changeImage(View view) {
-        if(serverFileUri != null) {
+        if(serverFileUri == null) {
             pickImage();
         } else {
             PopupMenu popupMenu = new PopupMenu(this, view);
@@ -123,6 +128,7 @@ public class ProfileActivity extends AppCompatActivity {
                     return false;
                 }
             });
+            popupMenu.show();
         }
     }
 
@@ -161,6 +167,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void removePhoto() {
+        progressBar.setVisibility(View.VISIBLE);
         UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
                 .setDisplayName(etName.getText().toString().trim())
                 .setPhotoUri(null)
@@ -169,7 +176,9 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseUser.updateProfile(request).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
+                    ivProfile.setImageResource(R.drawable.default_profile);
                     String userId = firebaseUser.getUid();
                     databaseReference = FirebaseDatabase.getInstance().getReference().child(NodeNames.USERS);
 
@@ -196,10 +205,11 @@ public class ProfileActivity extends AppCompatActivity {
         String strFileName = firebaseUser.getUid() + ".jpg";
 
         final StorageReference fileRef = fileStorage.child("images/" + strFileName);
-
+        progressBar.setVisibility(View.VISIBLE);
         fileRef.putFile(localFileUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
@@ -217,16 +227,15 @@ public class ProfileActivity extends AppCompatActivity {
                                         String userId = firebaseUser.getUid();
                                         databaseReference = FirebaseDatabase.getInstance().getReference().child(NodeNames.USERS);
 
-                                        Map<String, String> map = new HashMap<>();
-                                        map.put(NodeNames.NAME, etName.getText().toString().trim());
-                                        map.put(NodeNames.PHOTO, serverFileUri.getPath());
+                                        HashMap<String, String> hashMap = new HashMap<>();
+                                        hashMap.put(NodeNames.NAME, etName.getText().toString().trim());
+                                        hashMap.put(NodeNames.PHOTO, serverFileUri.getPath());
 
-                                        databaseReference.child(userId).setValue(map)
+                                        databaseReference.child(userId).setValue(hashMap)
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
-                                                        Toast.makeText(ProfileActivity.this, R.string.user_created_successfully, Toast.LENGTH_SHORT).show();
-                                                        startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                                                        finish();
                                                     }
                                                 });
                                     } else {
@@ -244,6 +253,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void updateName() {
+        progressBar.setVisibility(View.VISIBLE);
         UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
                 .setDisplayName(etName.getText().toString().trim())
                 .build();
@@ -251,6 +261,7 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseUser.updateProfile(request).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     String userId = firebaseUser.getUid();
                     databaseReference = FirebaseDatabase.getInstance().getReference().child(NodeNames.USERS);
@@ -261,8 +272,7 @@ public class ProfileActivity extends AppCompatActivity {
                     databaseReference.child(userId).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(ProfileActivity.this, R.string.user_created_successfully, Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                            finish();
                         }
                     });
                 } else {
@@ -271,5 +281,10 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public  void btnChangePasswordClick(View view)
+    {
+        startActivity(new Intent(ProfileActivity.this, ChangePasswordActivity.class));
     }
 }
