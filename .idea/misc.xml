@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable-v24/ic_forward.xml" value="0.1435" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.224" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable-v24/ic_share.xml" value="0.1435" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/card_border.xml" value="0.244" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_baseline_person_add_24.xml" value="0.1435" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_cancel.xml" value="0.1435" />
@@ -42,7 +44,7 @@
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/tab_chat.xml" value="0.4" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/tab_findfriends.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/tab_requests.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/menu/menu_chat_options.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/menu/menu_chat_options.xml" value="0.264" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/menu/menu_main.xml" value="0.253125" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/menu/menu_picture.xml" value="0.253125" />
       </map>

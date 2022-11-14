@@ -3,8 +3,9 @@ package com.kakura.ivanchat.chats;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-//import android.view.ActionMode;
+
 import androidx.appcompat.view.ActionMode;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,7 +38,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     private FirebaseAuth firebaseAuth;
 
     private ActionMode actionMode;
-    private  ConstraintLayout selectedView;
+    private ConstraintLayout selectedView;
 
     public MessagesAdapter(Context context, List<MessageModel> messageList) {
         this.context = context;
@@ -56,25 +57,22 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
         MessageModel message = messageList.get(position);
         firebaseAuth = FirebaseAuth.getInstance();
-        String currentUserId= firebaseAuth.getCurrentUser().getUid();
+        String currentUserId = firebaseAuth.getCurrentUser().getUid();
 
         String fromUserId = message.getMessageFrom();
 
         SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 
         String dateTime = sfd.format(new Date(message.getMessageTime()));
-        String [] splitString = dateTime.split(" ");
+        String[] splitString = dateTime.split(" ");
         String messageTime = splitString[1];
 
-        if(fromUserId.equals(currentUserId)){
+        if (fromUserId.equals(currentUserId)) {
 
-            if(message.getMessageType().equals(Constants.MESSAGE_TYPE_TEXT))
-            {
+            if (message.getMessageType().equals(Constants.MESSAGE_TYPE_TEXT)) {
                 holder.llSent.setVisibility(View.VISIBLE);
                 holder.llSentImage.setVisibility(View.GONE);
-            }
-            else
-            {
+            } else {
                 holder.llSent.setVisibility(View.GONE);
                 holder.llSentImage.setVisibility(View.VISIBLE);
             }
@@ -89,15 +87,11 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                     .load(message.getMessage())
                     .placeholder(R.drawable.ic_image)
                     .into(holder.ivSent);
-        }
-        else
-        {
-            if(message.getMessageType().equals(Constants.MESSAGE_TYPE_TEXT)) {
+        } else {
+            if (message.getMessageType().equals(Constants.MESSAGE_TYPE_TEXT)) {
                 holder.llReceived.setVisibility(View.VISIBLE);
                 holder.llReceivedImage.setVisibility(View.GONE);
-            }
-            else
-            {
+            } else {
                 holder.llReceived.setVisibility(View.GONE);
                 holder.llReceivedImage.setVisibility(View.VISIBLE);
             }
@@ -124,14 +118,12 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             public void onClick(View view) {
                 String messageType = view.getTag(R.id.TAG_MESSAGE_TYPE).toString();
                 Uri uri = Uri.parse(view.getTag(R.id.TAG_MESSAGE).toString());
-                if(messageType.equals(Constants.MESSAGE_TYPE_VIDEO))
-                {
-                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                if (messageType.equals(Constants.MESSAGE_TYPE_VIDEO)) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     intent.setDataAndType(uri, "video/mp4");
                     context.startActivity(intent);
-                }
-                else if(messageType.equals(Constants.MESSAGE_TYPE_IMAGE)){
-                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                } else if (messageType.equals(Constants.MESSAGE_TYPE_IMAGE)) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     intent.setDataAndType(uri, "image/jpg");
                     context.startActivity(intent);
                 }
@@ -142,16 +134,17 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         holder.clMessage.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if(actionMode!=null)
+                if (actionMode != null) {
                     return false;
+                }
 
                 selectedView = holder.clMessage;
 
-//                actionMode = ((AppCompatActivity)context).startSupportActionMode(actionModeCallBack);
-//
-//                holder.clMessage.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+                actionMode = ((AppCompatActivity) context).startSupportActionMode(actionModeCallBack);
 
-                return  true;
+                holder.clMessage.setBackgroundColor(context.getResources().getColor(R.color.gray));
+
+                return true;
             }
         });
     }
@@ -161,7 +154,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         return messageList.size();
     }
 
-    public class MessageViewHolder  extends  RecyclerView.ViewHolder{
+    public class MessageViewHolder extends RecyclerView.ViewHolder {
 
         private LinearLayout llSent, llReceived;
         private LinearLayout llSentImage, llReceivedImage;
@@ -185,8 +178,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
             llSentImage = itemView.findViewById(R.id.llSentImage);
             llReceivedImage = itemView.findViewById(R.id.llReceivedImage);
-            ivSent =itemView.findViewById(R.id.ivSent);
-            ivReceived =itemView.findViewById(R.id.ivReceived);
+            ivSent = itemView.findViewById(R.id.ivSent);
+            ivReceived = itemView.findViewById(R.id.ivReceived);
 
             tvImageSentTime = itemView.findViewById(R.id.tvSentImageTime);
             tvImageReceivedTime = itemView.findViewById(R.id.tvReceivedImageTime);
@@ -194,88 +187,80 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         }
     }
 
-//    public  ActionMode.Callback actionModeCallBack = new ActionMode.Callback() {
-//        @Override
-//        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-//
-//            MenuInflater inflater = actionMode.getMenuInflater();
-//            inflater.inflate(R.menu.menu_chat_options, menu);
-//
-//            String selectedMessageType = String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE_TYPE));
-//            if(selectedMessageType.equals(Constants.MESSAGE_TYPE_TEXT))
-//            {
-//                MenuItem itemDownload = menu.findItem(R.id.mnuDownload);
-//                itemDownload.setVisible(false);
-//            }
-//            return true;
-//        }
-//
-//        @Override
-//        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-//            return false;
-//        }
-//
-//        @Override
-//        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-//
-//            String selectedMessageId = String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE_ID));
-//            String selectedMessage = String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE));
-//            String selectedMessageType = String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE_TYPE));
-//
-//            int itemId = menuItem.getItemId();
-//            switch (itemId)
-//            {
-//                case  R.id.mnuDelete:
-//
-//                    if(context instanceof  ChatActivity)
-//                    {
-//                        ((ChatActivity)context).deleteMessage(selectedMessageId, selectedMessageType);
-//                    }
-//                    actionMode.finish();
-//                    break;
-//                case  R.id.mnuDownload:
-//                    if(context instanceof  ChatActivity)
-//                    {
-//                        ((ChatActivity)context).downloadFile(selectedMessageId, selectedMessageType, false);
-//                    }
-//                    actionMode.finish();
-//                    break;
-//                case  R.id.mnuShare:
-//                    if(selectedMessageType.equals(Constants.MESSAGE_TYPE_TEXT)){
-//                        Intent intentShare = new Intent();
-//                        intentShare.setAction(Intent.ACTION_SEND);
-//                        intentShare.putExtra(Intent.EXTRA_TEXT, selectedMessage);
-//                        intentShare.setType("text/plain");
-//                        context.startActivity(intentShare);
-//                    }
-//                    else
-//                    {
-//                        if(context instanceof  ChatActivity)
-//                        {
-//                            ((ChatActivity)context).downloadFile(selectedMessageId, selectedMessageType, true);
-//                        }
-//                    }
-//                    actionMode.finish();
-//                    break;
-//                case  R.id.mnuForward:
-//
-//                    if(context instanceof  ChatActivity)
-//                    {
+    public ActionMode.Callback actionModeCallBack = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+
+            MenuInflater inflater = actionMode.getMenuInflater();
+            inflater.inflate(R.menu.menu_chat_options, menu);
+
+            String selectedMessageType = String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE_TYPE));
+            if (selectedMessageType.equals(Constants.MESSAGE_TYPE_TEXT)) {
+                MenuItem itemDownload = menu.findItem(R.id.mnuDownload);
+                itemDownload.setVisible(false);
+            }
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+
+            String selectedMessageId = String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE_ID));
+            String selectedMessage = String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE));
+            String selectedMessageType = String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE_TYPE));
+
+            int itemId = menuItem.getItemId();
+            switch (itemId) {
+                case R.id.mnuDelete:
+
+                    if (context instanceof ChatActivity) {
+                        ((ChatActivity) context).deleteMessage(selectedMessageId, selectedMessageType);
+                    }
+                    actionMode.finish();
+                    break;
+                case R.id.mnuDownload:
+                    if (context instanceof ChatActivity) {
+                        ((ChatActivity) context).downloadFile(selectedMessageId, selectedMessageType, false);
+                    }
+                    actionMode.finish();
+                    break;
+                case R.id.mnuShare:
+                    if (selectedMessageType.equals(Constants.MESSAGE_TYPE_TEXT)) {
+                        Intent intentShare = new Intent();
+                        intentShare.setAction(Intent.ACTION_SEND);
+                        intentShare.putExtra(Intent.EXTRA_TEXT, selectedMessage);
+                        intentShare.setType("text/plain");
+                        context.startActivity(intentShare);
+                    } else {
+                        if (context instanceof ChatActivity) {
+                            ((ChatActivity) context).downloadFile(selectedMessageId, selectedMessageType, true);
+                        }
+                    }
+                    actionMode.finish();
+                    break;
+                case R.id.mnuForward:
+
+//                    if (context instanceof ChatActivity) {
 //                        ((ChatActivity) context).forwardMessage(selectedMessageId, selectedMessage, selectedMessageType);
 //                    }
-//
-//                    actionMode.finish();
-//                    break;
-//            }
-//            return false;
-//        }
-//
-//        @Override
-//        public void onDestroyActionMode(ActionMode actionMode) {
-//            actionMode =null;
-//            selectedView.setBackgroundColor(context.getResources().getColor(R.color.chat_background));
-//
-//        }
-//    };
+
+                    actionMode.finish();
+                    break;
+            }
+            return false;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode actionMode) {
+//            actionMode = null;
+            selectedView.setBackgroundColor(context.getResources().getColor(R.color.chat_background));
+
+        }
+    };
 
 }
