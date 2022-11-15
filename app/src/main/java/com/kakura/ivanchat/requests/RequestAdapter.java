@@ -110,7 +110,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
 
                                                                                                 String title = "Friend Request Accepted";
                                                                                                 String message = "Friend request accepted by " + currentUser.getDisplayName();
-//                                                                                                Util.sendNotification(context, title, message, userId); //todo
+                                                                                                Util.sendNotification(context, title, message, userId);
 
                                                                                                 holder.pbDecision.setVisibility(View.GONE);
                                                                                                 holder.btnDenyRequest.setVisibility(View.VISIBLE);
@@ -172,8 +172,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
 
                                                         String title = "Friend Request Denied";
                                                         String message = "Friend request denied by " + currentUser.getDisplayName();
-                                                        // Util.sendNotification(context, title, message, userId); //todo
-
+                                                         Util.sendNotification(context, title, message, userId);
 
                                                         holder.pbDecision.setVisibility(View.GONE);
                                                         holder.btnDenyRequest.setVisibility(View.VISIBLE);

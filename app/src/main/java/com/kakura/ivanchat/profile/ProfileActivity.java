@@ -91,10 +91,29 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void btnLogoutClick(View view) {
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signOut();
-        startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
-        finish();
+        final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference databaseReference = rootRef.child(NodeNames.TOKENS).child(currentUser.getUid());
+
+        databaseReference.setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful())
+                {
+                    firebaseAuth.signOut();
+                    startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                    finish();
+                }
+                else
+                {
+                    Toast.makeText(ProfileActivity.this, getString(R.string.something_went_wrong, task.getException())
+                            , Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
     public void btnSaveClick(View view) {

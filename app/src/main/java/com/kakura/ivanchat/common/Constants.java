@@ -20,4 +20,14 @@ public class Constants {
     public static final String TYPING_STOPPED = "0" ;
     public static final String TYPING_STARTED = "1" ;
 
+    public static final String NOTIFICATION_TITLE = "title";
+    public static final String NOTIFICATION_MESSAGE = "message";
+
+    public static final String NOTIFICATION_TO = "to";
+    public static final String NOTIFICATION_DATA = "data";
+
+    public static final String CHANNEL_ID = "ivan_chat_app_01";
+    public static final String CHANNEL_NAME ="ivan_chat_app_notifications";
+    public static final String CHANNEL_DESC ="Ivan Chat App notifications";
+
 }
