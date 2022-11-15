@@ -74,8 +74,7 @@ public class Util {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(NodeNames.DEVICE_TOKEN).getValue() != null) {
-                }
-                String deviceToken = dataSnapshot.child(NodeNames.DEVICE_TOKEN).getValue().toString();
+                 String deviceToken = dataSnapshot.child(NodeNames.DEVICE_TOKEN).getValue().toString();
 
                 JSONObject notification = new JSONObject();
                 JSONObject notificationData = new JSONObject();
@@ -133,7 +132,7 @@ public class Util {
                             context.getString(R.string.failed_to_send_notification, e.getMessage())
                             , Toast.LENGTH_SHORT).show();
                 }
-
+            }
             }
 
             @Override
