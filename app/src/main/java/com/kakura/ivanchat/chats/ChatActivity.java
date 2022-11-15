@@ -289,9 +289,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     String typingStatus = dataSnapshot.child(NodeNames.TYPING).getValue().toString();
 
                     if (typingStatus.equals(Constants.TYPING_STARTED)) {
-//                        tvUserStatus.setText(Constants.STATUS_TYPING);
+                        tvUserStatus.setText(Constants.STATUS_TYPING);
                     } else {
-//                        tvUserStatus.setText(Constants.STATUS_ONLINE);
+                        tvUserStatus.setText(Constants.STATUS_ONLINE);
                     }
                 }
             }
@@ -348,7 +348,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
                             String lastMessage = !title.equals("New Message") ? title : msg;
 
-//                            Util.updateChatDetails(ChatActivity.this, currentUserId, chatUserId, lastMessage); //todo
+                            Util.updateChatDetails(ChatActivity.this, currentUserId, chatUserId, lastMessage);
 
 
                         }

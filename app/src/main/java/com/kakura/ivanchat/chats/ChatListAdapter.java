@@ -62,25 +62,30 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
             }
         });
 
-//        String lastMessage  = chatListModel.getLastMessage();
-//        lastMessage = lastMessage.length()>30?lastMessage.substring(0,30):lastMessage;
-//        holder.tvLastMessage.setText(lastMessage);
-//
-//        String lastMessageTime = chatListModel.getLastMessageTime();
-//        if(lastMessageTime==null) lastMessageTime="";
-//        if(!TextUtils.isEmpty(lastMessageTime))
-//            holder.tvLastMessageTime.setText(Util.getTimeAgo(Long.parseLong(lastMessageTime)));
-//
-//
-//        if(!chatListModel.getUnreadCount().equals("0"))
-//        {
-//            holder.tvUnreadCount.setVisibility(View.VISIBLE);
-//            holder.tvUnreadCount.setText(chatListModel.getUnreadCount());
-//        }
-//        else
-//            holder.tvUnreadCount.setVisibility(View.GONE);
-//
-//
+        String lastMessage = chatListModel.getLastMessage();
+        lastMessage = lastMessage.length() > 30 ? lastMessage.substring(0, 30) : lastMessage;
+        holder.tvLastMessage.setText(lastMessage);
+
+        String lastMessageTime = chatListModel.getLastMessageTime();
+        if (lastMessageTime == null) {
+            lastMessageTime = "";
+        }
+        if (!TextUtils.isEmpty(lastMessageTime)) {
+            holder.tvLastMessageTime.setText(Util.getTimeAgo(Long.parseLong(lastMessageTime)));
+        }
+
+        if (!chatListModel.getUnreadCount().equals("0")) {
+            holder.tvUnreadCount.setVisibility(View.VISIBLE);
+            holder.tvUnreadCount.setText(chatListModel.getUnreadCount());
+        } else {
+            holder.tvLastMessage.setVisibility(View.GONE); //todo check
+            holder.tvLastMessageTime.setVisibility(View.GONE);
+
+
+
+            holder.tvUnreadCount.setVisibility(View.GONE);
+        }
+
         holder.llChatList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,30 +96,30 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
                 context.startActivity(intent);
             }
         });
-        }
-
-        @Override
-        public int getItemCount () {
-            return chatListModelList.size();
-        }
-
-        public class ChatListViewHolder extends RecyclerView.ViewHolder {
-            private LinearLayout llChatList;
-            private TextView tvFullName, tvLastMessage, tvLastMessageTime, tvUnreadCount;
-            private ImageView ivProfile;
-
-            public ChatListViewHolder(@NonNull View itemView) {
-                super(itemView);
-
-                llChatList = itemView.findViewById(R.id.llChatList);
-                tvFullName = itemView.findViewById(R.id.tvFullName);
-                tvLastMessage = itemView.findViewById(R.id.tvLastMessage);
-                tvLastMessageTime = itemView.findViewById(R.id.tvLastMessageTime);
-                tvUnreadCount = itemView.findViewById(R.id.tvUnreadCount);
-                ivProfile = itemView.findViewById(R.id.ivProfile);
-            }
-        }
-
-
     }
+
+    @Override
+    public int getItemCount() {
+        return chatListModelList.size();
+    }
+
+    public class ChatListViewHolder extends RecyclerView.ViewHolder {
+        private LinearLayout llChatList;
+        private TextView tvFullName, tvLastMessage, tvLastMessageTime, tvUnreadCount;
+        private ImageView ivProfile;
+
+        public ChatListViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            llChatList = itemView.findViewById(R.id.llChatList);
+            tvFullName = itemView.findViewById(R.id.tvFullName);
+            tvLastMessage = itemView.findViewById(R.id.tvLastMessage);
+            tvLastMessageTime = itemView.findViewById(R.id.tvLastMessageTime);
+            tvUnreadCount = itemView.findViewById(R.id.tvUnreadCount);
+            ivProfile = itemView.findViewById(R.id.ivProfile);
+        }
+    }
+
+
+}
 

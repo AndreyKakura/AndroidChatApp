@@ -34,7 +34,7 @@ public class ChatFragment extends Fragment {
     private RecyclerView rvChatList;
     private View progressBar;
     private TextView tvEmptyChatList;
-    private  ChatListAdapter chatListAdapter;
+    private ChatListAdapter chatListAdapter;
     private List<ChatListModel> chatListModelList;
 
     private DatabaseReference databaseReferenceChats, databaseReferenceUsers;
@@ -43,7 +43,7 @@ public class ChatFragment extends Fragment {
     private ChildEventListener childEventListener;
     private Query query;
 
-    private  List<String> userIds;
+    private List<String> userIds;
 
     public ChatFragment() {
         // Required empty public constructor
@@ -79,7 +79,7 @@ public class ChatFragment extends Fragment {
 
         databaseReferenceUsers = FirebaseDatabase.getInstance().getReference().child(NodeNames.USERS);
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReferenceChats= FirebaseDatabase.getInstance().getReference().child(NodeNames.CHATS).child(currentUser.getUid());
+        databaseReferenceChats = FirebaseDatabase.getInstance().getReference().child(NodeNames.CHATS).child(currentUser.getUid());
 
         query = databaseReferenceChats.orderByChild(NodeNames.TIME_STAMP);
 
@@ -118,44 +118,42 @@ public class ChatFragment extends Fragment {
     }
 
 
-    private  void updateList(DataSnapshot dataSnapshot, final boolean isNew, final String userId)
-    {
+    private void updateList(DataSnapshot dataSnapshot, final boolean isNew, final String userId) {
         progressBar.setVisibility(View.GONE);
         tvEmptyChatList.setVisibility(View.GONE);
 
-        final String  lastMessage, lastMessageTime, unreadCount;
+        final String lastMessage, lastMessageTime, unreadCount;
 
-        if(dataSnapshot.child(NodeNames.LAST_MESSAGE).getValue()!=null)
+        if (dataSnapshot.child(NodeNames.LAST_MESSAGE).getValue() != null) {
             lastMessage = dataSnapshot.child(NodeNames.LAST_MESSAGE).getValue().toString();
-        else
+        } else {
             lastMessage = "";
-
-        if(dataSnapshot.child(NodeNames.LAST_MESSAGE_TIME).getValue()!=null)
+        }
+        if (dataSnapshot.child(NodeNames.LAST_MESSAGE_TIME).getValue() != null) {
             lastMessageTime = dataSnapshot.child(NodeNames.LAST_MESSAGE_TIME).getValue().toString();
-        else
-            lastMessageTime="";
-
-        unreadCount=dataSnapshot.child(NodeNames.UNREAD_COUNT).getValue()==null?
-                "0":dataSnapshot.child(NodeNames.UNREAD_COUNT).getValue().toString();
+        } else {
+            lastMessageTime = "";
+        }
+        unreadCount = dataSnapshot.child(NodeNames.UNREAD_COUNT).getValue() == null ?
+                "0" : dataSnapshot.child(NodeNames.UNREAD_COUNT).getValue().toString();
 
         databaseReferenceUsers.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String fullName = dataSnapshot.child(NodeNames.NAME).getValue()!=null?
-                        dataSnapshot.child(NodeNames.NAME).getValue().toString():"";
+                String fullName = dataSnapshot.child(NodeNames.NAME).getValue() != null ?
+                        dataSnapshot.child(NodeNames.NAME).getValue().toString() : "";
 
                 /*String photoName = dataSnapshot.child(NodeNames.PHOTO).getValue()!=null?
                         dataSnapshot.child(NodeNames.PHOTO).getValue().toString():"";*/
-                String photoName  = userId +".jpg";
+                String photoName = userId + ".jpg";
 
-                ChatListModel chatListModel = new ChatListModel(userId, fullName, photoName,unreadCount,lastMessage,lastMessageTime);
+                ChatListModel chatListModel = new ChatListModel(userId, fullName, photoName, unreadCount, lastMessage, lastMessageTime);
 
-                if(isNew) {
+                if (isNew) {
                     chatListModelList.add(chatListModel);
                     userIds.add(userId);
-                }
-                else {
-                    int indexOfClickedUser = userIds.indexOf(userId) ;
+                } else {
+                    int indexOfClickedUser = userIds.indexOf(userId);
                     chatListModelList.set(indexOfClickedUser, chatListModel);
                 }
 
@@ -166,7 +164,7 @@ public class ChatFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                Toast.makeText(getActivity(),  getActivity().getString(R.string.failed_to_fetch_chat_list, databaseError.getMessage())
+                Toast.makeText(getActivity(), getActivity().getString(R.string.failed_to_fetch_chat_list, databaseError.getMessage())
                         , Toast.LENGTH_SHORT).show();
             }
         });
