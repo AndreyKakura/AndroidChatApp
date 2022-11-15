@@ -58,6 +58,7 @@ import com.kakura.ivanchat.common.Constants;
 import com.kakura.ivanchat.common.Extras;
 import com.kakura.ivanchat.common.NodeNames;
 import com.kakura.ivanchat.common.Util;
+import com.kakura.ivanchat.selectfriend.SelectFriendActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -688,6 +689,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             StorageReference fileRef = FirebaseStorage.getInstance().getReference().child(folderName).child(fileName);
             final String localFilePath = getExternalFilesDir(null).getAbsolutePath() + "/" + fileName;
 
+//            Toast.makeText(ChatActivity.this, localFilePath, Toast.LENGTH_LONG).show(); //todo change pass
+
             File localFile = new File(localFilePath);
 
             try {
@@ -799,13 +802,13 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-//    public void forwardMessage(String selectedMessageId, String selectedMessage, String selectedMessageType) {
-//        Intent intent = new Intent(this, SelectFriendActivity.class);
-//        intent.putExtra(Extras.MESSAGE, selectedMessage);
-//        intent.putExtra(Extras.MESSAGE_ID, selectedMessageId);
-//        intent.putExtra(Extras.MESSAGE_TYPE, selectedMessageType);
-//        startActivityForResult(intent, REQUEST_CODE_FORWARD_MESSAGE);
-//    }
+    public void forwardMessage(String selectedMessageId, String selectedMessage, String selectedMessageType) {
+        Intent intent = new Intent(this, SelectFriendActivity.class);
+        intent.putExtra(Extras.MESSAGE, selectedMessage);
+        intent.putExtra(Extras.MESSAGE_ID, selectedMessageId);
+        intent.putExtra(Extras.MESSAGE_TYPE, selectedMessageType);
+        startActivityForResult(intent, REQUEST_CODE_FORWARD_MESSAGE);
+    }
 
     @Override
     public void onBackPressed() {

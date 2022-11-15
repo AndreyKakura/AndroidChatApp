@@ -134,9 +134,9 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         holder.clMessage.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if (actionMode != null) {
-                    return false;
-                }
+//                if (actionMode != null) {//todo realize wtf is going on
+//                    return false;
+//                }
 
                 selectedView = holder.clMessage;
 
@@ -245,9 +245,9 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                     break;
                 case R.id.mnuForward:
 
-//                    if (context instanceof ChatActivity) {
-//                        ((ChatActivity) context).forwardMessage(selectedMessageId, selectedMessage, selectedMessageType);
-//                    }
+                    if (context instanceof ChatActivity) {
+                        ((ChatActivity) context).forwardMessage(selectedMessageId, selectedMessage, selectedMessageType);
+                    }
 
                     actionMode.finish();
                     break;
@@ -257,7 +257,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
         @Override
         public void onDestroyActionMode(ActionMode actionMode) {
-//            actionMode = null;
+            actionMode = null;
             selectedView.setBackgroundColor(context.getResources().getColor(R.color.chat_background));
 
         }
