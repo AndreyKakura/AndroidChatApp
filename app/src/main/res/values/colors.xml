@@ -11,4 +11,6 @@
     <color name="gray">#ACACAC</color>
     <color name="chat_background">#ededed</color>
     <color name="linkColor">#2196F3</color>
+    <color name="blue">#659DBD</color>
+    <color name="dark_blue">#557A95</color>
 </resources>

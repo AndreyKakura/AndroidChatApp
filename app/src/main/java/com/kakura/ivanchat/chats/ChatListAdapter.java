@@ -78,8 +78,8 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
             holder.tvUnreadCount.setVisibility(View.VISIBLE);
             holder.tvUnreadCount.setText(chatListModel.getUnreadCount());
         } else {
-            holder.tvLastMessage.setVisibility(View.GONE); //todo check
-            holder.tvLastMessageTime.setVisibility(View.GONE);
+            holder.tvLastMessage.setText(""); //todo check
+            holder.tvLastMessageTime.setText("");
 
 
 

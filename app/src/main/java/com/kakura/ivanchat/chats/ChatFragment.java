@@ -112,7 +112,7 @@ public class ChatFragment extends Fragment {
 
         query.addChildEventListener(childEventListener);
 
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE); //todo check
         tvEmptyChatList.setVisibility(View.VISIBLE);
 
     }

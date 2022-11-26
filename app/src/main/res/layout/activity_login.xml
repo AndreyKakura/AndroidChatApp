@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="tvSignupClick"
     tools:context=".login.LoginActivity">
 
     <include
@@ -16,16 +15,17 @@
         android:id="@+id/imageView"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_ivanchat" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"
+        android:layout_margin="16dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +87,7 @@
                 android:padding="6dp"
                 android:text="@string/reset_password"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/design_default_color_primary" />
+                android:textColor="@color/red" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -96,11 +96,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
 
         <TextView
             android:id="@+id/textView2"
@@ -115,10 +115,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginStart="8dp"
             android:onClick="tvSignupClick"
             android:text="@string/signup"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/design_default_color_primary" />
+            android:textColor="@color/red" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

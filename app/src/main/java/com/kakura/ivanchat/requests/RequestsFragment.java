@@ -122,8 +122,8 @@ public class RequestsFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getActivity(), getActivity().getString(R.string.failed_to_fetch_friend_requests, databaseError.getMessage())
-                        , Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), getActivity().getString(R.string.failed_to_fetch_friend_requests, databaseError.getMessage())
+//                        , Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.GONE);
             }
         });

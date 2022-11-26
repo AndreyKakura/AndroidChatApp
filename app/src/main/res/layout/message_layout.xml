@@ -57,8 +57,8 @@
         tools:visibility="visible">
         <ImageView
             android:id="@+id/ivSent"
-            android:layout_width="90dp"
-            android:layout_height="100dp"
+            android:layout_width="120dp"
+            android:layout_height="150dp"
             android:src="@drawable/ic_image"/>
 
         <TextView

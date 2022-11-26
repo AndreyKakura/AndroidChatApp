@@ -125,8 +125,8 @@ public class FindFriendsFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(getContext(), getContext().getString(R.string.failed_to_fetch_friends, databaseError.getMessage())
-                        , Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), getContext().getString(R.string.failed_to_fetch_friends, databaseError.getMessage())
+//                        , Toast.LENGTH_SHORT).show();
             }
         });
 

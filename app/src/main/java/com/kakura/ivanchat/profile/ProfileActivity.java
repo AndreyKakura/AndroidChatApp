@@ -94,6 +94,12 @@ public class ProfileActivity extends AppCompatActivity {
         final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
+        DatabaseReference databaseReferenceUsers = FirebaseDatabase.getInstance().getReference()  //todo check
+                .child(NodeNames.USERS).child(firebaseAuth.getCurrentUser().getUid());
+
+        databaseReferenceUsers.child(NodeNames.ONLINE).setValue(false);
+
+
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference databaseReference = rootRef.child(NodeNames.TOKENS).child(currentUser.getUid());
 

@@ -7,8 +7,11 @@
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.224" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable-v24/ic_share.xml" value="0.1435" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/card_border.xml" value="0.244" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_attachment.xml" value="0.1435" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_baseline_person_add_24.xml" value="0.1435" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_camera.xml" value="0.1435" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_cancel.xml" value="0.1435" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_chat.xml" value="0.1435" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_close.xml" value="0.1435" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_gallery.xml" value="0.1435" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_image.xml" value="0.124" />
@@ -16,6 +19,9 @@
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_ivanchat4.xml" value="0.224" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_launcher_background.xml" value="0.224" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_pause.xml" value="0.1435" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_play.xml" value="0.1435" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_send.xml" value="0.1435" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ic_video.xml" value="0.1435" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/ivanchat.xml" value="0.224" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/received_message_background.xml" value="0.1435" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/drawable/red_circle.xml" value="0.1435" />
@@ -28,10 +34,11 @@
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/activity_reset_password.xml" value="0.264" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/activity_select_friend.xml" value="0.25226449275362317" />
-        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/activity_signup.xml" value="0.1" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/activity_signup.xml" value="0.264" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/activity_test.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/chat_file_option.xml" value="0.25226449275362317" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/chat_file_options.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/chat_list_layout.xml" value="0.25226449275362317" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/custom_action_bar.xml" value="0.25226449275362317" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/IvanChat/app/src/main/res/layout/custom_progressbar.xml" value="0.253125" />
