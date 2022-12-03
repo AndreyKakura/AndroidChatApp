@@ -47,7 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, SignupActivity.class));
     }
 
-    public void btnLoginClick(View v) {email = etEmail.getText().toString().trim();
+    public void btnLoginClick(View v) {
+        email = etEmail.getText().toString().trim();
         password = etPassword.getText().toString().trim();
 
         if (email.equals("")) {
@@ -55,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         } else if (password.equals("")) {
             etPassword.setError(getString(R.string.enter_password));
         } else {
-            if(Util.connectionAvailable(this)) {
+            if (Util.connectionAvailable(this)) {
                 progressBar.setVisibility(View.VISIBLE);
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                 firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -87,12 +88,12 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-        if(firebaseUser != null) {
+        if (firebaseUser != null) {
 
             FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
                 @Override
                 public void onSuccess(InstanceIdResult instanceIdResult) {
-                    Util.updateDeviceToken(LoginActivity.this, instanceIdResult.getToken() );
+                    Util.updateDeviceToken(LoginActivity.this, instanceIdResult.getToken());
                 }
             });
 

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -34,14 +35,13 @@ import com.kakura.ivanchat.R;
 import com.kakura.ivanchat.common.NodeNames;
 import com.kakura.ivanchat.login.LoginActivity;
 import com.kakura.ivanchat.password.ChangePasswordActivity;
-import com.kakura.ivanchat.signup.SignupActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TextInputEditText etEmail;
+    private TextView tvEmail;
     private TextInputEditText etName;
 
     private String email;
@@ -63,7 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        etEmail = findViewById(R.id.etEmail);
+        tvEmail = (TextView) findViewById(R.id.tvEmail);
         etName = findViewById(R.id.etName);
         ivProfile = findViewById(R.id.ivProfile);
 
@@ -77,7 +77,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (firebaseUser != null) {
             etName.setText(firebaseUser.getDisplayName());
-            etEmail.setText(firebaseUser.getEmail());
+            tvEmail.setText(firebaseUser.getEmail());
             serverFileUri = firebaseUser.getPhotoUrl();
 
             if (serverFileUri != null) {
