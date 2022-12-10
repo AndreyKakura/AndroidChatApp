@@ -195,10 +195,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             inflater.inflate(R.menu.menu_chat_options, menu);
 
             String selectedMessageType = String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE_TYPE));
-            if (selectedMessageType.equals(Constants.MESSAGE_TYPE_TEXT)) {
-                MenuItem itemDownload = menu.findItem(R.id.mnuDownload);
-                itemDownload.setVisible(false);
-            }
+
             return true;
         }
 
@@ -220,26 +217,6 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
                     if (context instanceof ChatActivity) {
                         ((ChatActivity) context).deleteMessage(selectedMessageId, selectedMessageType);
-                    }
-                    actionMode.finish();
-                    break;
-                case R.id.mnuDownload:
-                    if (context instanceof ChatActivity) {
-                        ((ChatActivity) context).downloadFile(selectedMessageId, selectedMessageType, false);
-                    }
-                    actionMode.finish();
-                    break;
-                case R.id.mnuShare:
-                    if (selectedMessageType.equals(Constants.MESSAGE_TYPE_TEXT)) {
-                        Intent intentShare = new Intent();
-                        intentShare.setAction(Intent.ACTION_SEND);
-                        intentShare.putExtra(Intent.EXTRA_TEXT, selectedMessage);
-                        intentShare.setType("text/plain");
-                        context.startActivity(intentShare);
-                    } else {
-                        if (context instanceof ChatActivity) {
-                            ((ChatActivity) context).downloadFile(selectedMessageId, selectedMessageType, true);
-                        }
                     }
                     actionMode.finish();
                     break;
